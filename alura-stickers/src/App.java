@@ -7,8 +7,6 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class App {
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
     public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
@@ -19,6 +17,7 @@ public class App {
         
         //fazer uma conexao http //buscar os top 250 - os dados do imdb
         String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
+        //buscando valor em uma variavel de ambiente. (apenas para testes pois pg  proposta nao funcionou.)
         String imdbkey = System.getenv("IMDB_API_KEY");
 
         URI endereco = URI.create(url);
@@ -32,7 +31,7 @@ public class App {
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
         //exibir e manipular os dados da forma que quiser
-        System.out.println("Variavel" + imdbkey);
+        System.out.println("Variavel ambiente como exemplo: " + imdbkey);
 
         for (Map<String,String>  filme : listaDeFilmes) {
             System.out.println(ANSI_NEGRIGO + "Poster:" + ANSI_RESET + " " + ANSI_BLUE_BACKGROUND + filme.get("title") + ANSI_RESET);
